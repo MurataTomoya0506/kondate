@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # PHP
+  app:
+    build:
+      dockerfile: ""
+    voulumes:
+      - ./php:/usr/share/nginx/html
+      # ソースコードパス（PHP）
+     
+    ports:
+      # php-fpms
+      - "8080": 8080
+
+  # nginx
+  nginx:
+    build:
+      dockerfile: ""
+    voulumes:
+      - ./php:/usr/share/nginx/html
+      # ソースコードパス（PHP）
+      
+    ports:
+      - "8088": 8088
+
+  # node.js
+  node:
+    build:
+      dockerfile: "./Dockerfile"
+    voulumes:
+      - nuxtjs:/var/www/html
+    ports:
+      - "80": 3000
+    volumes:
+      node_modules_volume:
